@@ -166,14 +166,14 @@ object GBDTFM extends App {
 
       /** task = 0 for regression; task = 1 for binary classification, Factorization Machine **/
       // train a model
-      val fm1 = FMWithSGD.train(trainingData, task = 0, numIterations = args(3).toInt, stepSize = args(4).toDouble, miniBatchFraction = 1.0, dim = (true, true, 4), regParam = (0, 0, 0), initStd = 0.1)
+      val fm1 = FMWithSGD.train(trainingData, task = 1, numIterations = args(3).toInt, stepSize = args(4).toDouble, miniBatchFraction = 1.0, dim = (true, true, 4), regParam = (0, 0, 0), initStd = 0.1)
       println("Factorization Machine Training Completed")
 
       val ValueAndLabels = testData.map {
         y =>
           val x = fm1.predict(y.features)
           (x, y.label)
-      }
+      } // the predict value 
 
       val PredictionAndLabel = testData.map{
         y =>
@@ -184,7 +184,7 @@ object GBDTFM extends App {
           else
             flag = 0.0
           (flag, y.label)
-      }
+      } // the predict label
 
       val metrics = new MulticlassMetrics(PredictionAndLabel)
       val precision = metrics.precision
