@@ -17,3 +17,8 @@ args（3）： number of iteration of FM e.g. 20
 args（4）： step size of FM e.g. 0.1
 
 other parameters in GBDT e.g. depth of tree and that of in FM e.g. bias, regularization can be set mannually.
+
+# two read file method is provided
+1. LibSVM Format, spark RDD labelled point
+
+2. text format, split by "," with first column of label and rest the data
