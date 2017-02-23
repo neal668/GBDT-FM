@@ -178,12 +178,12 @@ object GBDTFM extends App {
       val PredictionAndLabel = testData.map{
         y =>
           val temp = fm1.predict(y.features)
-          var flag: Int = 0
+          var flag: Double = 0.0
           if(temp > 0.5)
-            flag = 1
+            flag = 1.0
           else
-            flag = 0
-          (temp, y.label)
+            flag = 0.0
+          (flag, y.label)
       }
 
       val metrics = new MulticlassMetrics(PredictionAndLabel)
